@@ -19,18 +19,14 @@ function solveEquation(a, b, c) {
   return arr;
 };
 
-// console.log(solveEquation(1,5,4));
-
 // S - тело кредита
 // payment - ежемесячный платёж
 
 function calculateTotalMortgage(percent, contribution, amount, countMonths) {
-  let arr = [];
-  let P = percent/100/12
-  let S = amount - contribution
-  let payment = S * (P + (P / (((1 + P) ** countMonths) - 1)))
-  let totalSum = (payment * countMonths).toFixed(2)
-  arr.push(Number(totalSum))
-  return arr;
+  let P = percent/100/12;
+  let S = amount - contribution;
+  let payment = S * (P + (P / (((1 + P) ** countMonths) - 1)));
+  let totalSum = (payment * countMonths).toFixed(2);
+  totalSum = (Number(totalSum));
+  return totalSum;
 };
-// console.log(calculateTotalMortgage(10, 0, 50000, 12));
