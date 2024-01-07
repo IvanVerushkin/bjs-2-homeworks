@@ -7,33 +7,28 @@ function getArrayParams(...arr) {
 };
 
 function summElementsWorker(...arr) {
-  if (arr == 0) {
-    return 0
+  if (!arr.length == 0) {
+    return arr.reduce((acc, c) => acc + c, 0);
   } else {
-    let sum = arr.reduce((acc, c) => acc + c, 0);
-    return sum
+    return 0
   };
 };
 
 function differenceMaxMinWorker(...arr) {
-  if (arr == 0) {
-    return 0
-  } else {
+  if (!arr.length == 0) {
     let min = Math.min(...arr);
     let max = Math.max(...arr);
-    let difference = max - min;
-    return difference
+    return max - min;
+  } else {
+    return 0
   };
 };
 
 function differenceEvenOddWorker(...arr) {
   let even = 0;
   let odd = 0;
-  let difference = 0;
 
-  if (arr == 0) {
-    return 0
-  } else {
+  if (!arr.length == 0) {
     arr.forEach(elem => {
       if (elem % 2 == 0) {
         even += elem
@@ -41,17 +36,16 @@ function differenceEvenOddWorker(...arr) {
         odd += elem
       };
     });
-    difference = even - odd
-    return difference
+    return even - odd
+  } else {
+    return 0
   };
 };
 
 function averageEvenElementsWorker(...arr) {
   let sumEvenElement = 0;
   let countEvenElement = 0;
-  if (arr == 0) {
-    return 0
-  } else {
+  if (!arr.length == 0) {
     arr.forEach((elem) => {
       if (elem % 2 == 0) {
         sumEvenElement += elem;
@@ -59,6 +53,8 @@ function averageEvenElementsWorker(...arr) {
       };
     });
     return sumEvenElement / countEvenElement
+  } else {
+    return 0
   };
 };
 
@@ -66,8 +62,11 @@ function makeWork (arrOfArr, func) {
   let maxWorkerResult = -Infinity;
 
   arrOfArr.forEach((elem) => {
-    let sum = func(...elem);
-    maxWorkerResult = sum;
+    let result = func(...elem);
+    if (maxWorkerResult < result) {
+      maxWorkerResult = result;
+    }
+    
   });
 
   return maxWorkerResult;
