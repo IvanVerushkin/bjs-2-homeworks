@@ -3,22 +3,32 @@ function Student(name, gender, age) {
   this.gender = gender;
   this.age = age;
   this.marks = [];
-}
-
-let student_1 = new Student("Ivan", "male", "18");
-let student_2 = new Student("Andrey", "male", "19");
-let student_3 = new Student("Lena", "woman", "20");
-
+};
 
 Student.prototype.setSubject = function(subjectName) {
   this.subject = subjectName;
-  this.marks = [];
 };
 
 Student.prototype.addMarks = function(...marks) {
   if (this.hasOwnProperty('marks')) {
     this.marks.push(...marks);
-  } else {
-    return 0;
   };
+};
+
+Student.prototype.getAverage = function(...marks) {
+  if ((this.hasOwnProperty('marks') === false) || (this.hasOwnProperty('marks') === '')) {
+    return 0;
+  } else {
+    let sum = 0;
+    let count = this.marks.length;
+    this.marks.map(item => sum = sum + item);
+    this.Average = sum / count;
+    return this.Average;
+  };
+};
+
+Student.prototype.exclude = function(reason) {
+  delete this.subject;
+  delete this.marks;
+  this.excluded = reason;
 };
