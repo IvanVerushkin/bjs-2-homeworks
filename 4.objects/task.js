@@ -15,16 +15,14 @@ Student.prototype.addMarks = function(...marks) {
   };
 };
 
-Student.prototype.getAverage = function(...marks) {
-  if ((this.hasOwnProperty('marks') === false) || (this.hasOwnProperty('marks') === '')) {
+Student.prototype.getAverage = function() {
+  if ((this.hasOwnProperty('marks') === false) || (this.marks.length === 0)) {
     return 0;
-  } else {
-    let sum = 0;
-    let count = this.marks.length;
-    this.marks.map(item => sum = sum + item);
-    this.Average = sum / count;
-    return this.Average;
   };
+  let res = this.marks.reduce((sum, item) => {
+    return sum + item;
+  },0);
+  return res / this.marks.length;
 };
 
 Student.prototype.exclude = function(reason) {
