@@ -75,21 +75,15 @@ class Library{
     };
   };
 
-  // Создайте метод `findBookBy(type, value)`, который в качестве аргументов будет принимать ключ 
-  // для проведения поиска (тип, автор, название, год выпуска и пр.) и искомое значение. 
-  // Метод должен возвращать книгу в случае успеха и `null`, если запрошенная книга не была найдена.
+  findBookBy(type, value) {
+    return this.books.find(book => book[type] == value) || null;
+  };
 
-    findBookBy(type, value) {
-    this.books.forEach((book) => {
-      console.log(book);
-/*       console.log([value]);
-      console.log([type]); */
-    });
-  }
-
-
-/*   giveBookByName(bookName) {
-
-  } */
-
+  giveBookByName(bookName) {
+    const book = this.findBookBy('name', bookName);
+    if (book) {
+      this.books.splice(this.books.indexOf(book), 1);
+    };
+    return book;
+  };
 };
